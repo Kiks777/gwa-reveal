@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="src/style.css" rel="stylesheet">
+  <title>GWA REVEAL</title>
+  <link rel="icon" type="image/svg+xml" href="src/logo.svg" />
+
+</head>
+
+<body class="font-poppins bg-[#EFEEE9] grid place-items-center p-[5%]">
+
+  <header>
+    <h1 id="show-gwa" class="text-5xl font-semibold px-10 text-[#0a5c36]">
+      GWA REVEAL
+    </h1>
+    <p id="error" class="text-center text-red-600 py-2"></p>
+  </header>
+
+  <main class=" text-sm md:text-md lg:text-lg ">
+    <table>
+      <thead class="p-10">
+        <tr class="text-[#18392B] flex gap-[43%]">
+          <th class="py-5 text-left">
+            Unit
+          </th>
+          <th class="py-5  text-left">
+            Grade
+          </th>
+          <!-- <th class="py-5  text-center">
+            Action
+          </th> -->
+        </tr>
+      </thead>
+
+      <tbody id="table-body">
+        <tr class="flex gap-3">
+          <td>
+            <input type="number"
+              class="unit w-full border border-[#0A5C36] h-10 py-2 px-2 mr-10 rounded-md focus:outline-none focus:ring-0 mt-5 text-xs lg:text-sm"
+              placeholder="Enter unit">
+          </td>
+
+          <td class="relative">
+            <input type="number"
+              class="grade w-full border border-[#0A5C36] h-10 py-2 px-2 mr-10 rounded-md focus:outline-none focus:ring-0 mt-5 text-xs lg:text-sm"
+              placeholder="Enter grade">
+
+            <!-- <button
+              class="delete-button absolute right-2 top-2 bg-[#0A5C36] h-6 w-6 flex items-center justify-center rounded-full text-[#EFEEE9] hover:shadow-lg hover:scale-105 hover:bg-[#18392B] text-xs">
+              x
+            </button> -->
+          </td>
+
+        </tr>
+
+      </tbody>
+
+      <tfoot>
+        <tr class="flex gap-3">
+          <td class="w-full">
+            <button id="calculate"
+              class="w-full text-center bg-[#0A5C36] h-10  py-2 px-2 mr-10 rounded-md text-[#EFEEE9] hover:shadow-2xl hover:scale-105 hover:bg-[#18392B] mt-5">calculate</button>
+          </td>
+          <td class="w-full">
+            <button id="add"
+              class="w-full text-center bg-[#0A5C36] h-10  py-2 px-2 mr-10 rounded-md text-[#EFEEE9] hover:shadow-2xl hover:scale-105 hover:bg-[#18392B] mt-5">add</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </main>
+
+  <!-- <footer></footer> -->
+
+
+  <!-- <footer class="w-full bg-[#1D2E28] text-center">
+    <p class="text-[#EFEEE9] text-md">
+      © <span id="date"></span> © 2025 GWA Calculator created by MAB. All rights reserved.
+    </p>
+  </footer> -->
+
+
+  <script>
+
+
+
+    // const d = new Date();
+    // let year = d.getFullYear();
+    // document.getElementById('date').innerHTML = year;
+
+
+
+
+
+    const addbButton = document.getElementById('add');
+    const tbody = document.querySelector('tbody');
+
+    addbButton.addEventListener('click', function () {
+      // create row
+      const row = document.createElement('tr');
+      row.className = 'flex gap-3';
+
+      // create table details for unit, grade, and delete button
+      const tdUnit = document.createElement('td');
+      const tdGrade = document.createElement('td');
+      tdGrade.className = 'relative';
+
+      // const tdButton = document.createElement('td');
+
+
+      // create input for units and also its attributes
+      const unit = document.createElement('input');
+      unit.type = 'number';
+      unit.placeholder = 'Enter unit';
+      unit.className = 'unit w-full border border-[#0A5C36] h-10 py-2 px-2 mr-10 rounded-md focus:outline-none focus:ring-0 mt-5 text-xs lg:text-sm';
+
+      // create input for grades and its attributes
+      const grade = document.createElement('input');
+      grade.type = 'number';
+      grade.placeholder = 'Enter grade';
+      grade.className = 'grade w-full border border-[#0A5C36] h-10 py-2 px-2 mr-10 rounded-md focus:outline-none focus:ring-0 mt-5 text-xs lg:text-sm';
+
+
+      // create delete button
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-button absolute right-2 top-2 bg-[#0A5C36] h-6 w-6 flex items-center justify-center rounded-full text-[#EFEEE9] hover:shadow-lg hover:scale-105 hover:bg-[#18392B] text-xs';
+      deleteButton.innerHTML = 'x';
+      deleteButton.title = 'click to remove';
+
+
+
+      // append/insert  the unit, grade, and button into their respective tabble details/cells
+      tdUnit.appendChild(unit);
+      tdGrade.appendChild(grade);
+      tdGrade.appendChild(deleteButton);
+      // tdButton.appendChild(deleteButton);
+
+
+      // append/insert the table details/cells into the table row
+      row.appendChild(tdUnit);
+      row.appendChild(tdGrade);
+      // row.appendChild(tdButton);
+
+
+
+      // append/insert the row into the table body - this part should be specific because if not you might insert it to other parts of the table 
+      tbody.appendChild(row);
+
+
+      // event listener for deleting a table row with table details/cells the consist of units, grade, and, delete button
+      deleteButton.addEventListener('click', function () {
+        // remove the specific row
+        tbody.removeChild(row);
+      });
+
+
+    });
+
+
+
+    // for calulating the gwa
+    document.getElementById('calculate').addEventListener('click', function () {
+
+      const table = document.getElementById('table-body');
+      const rows = table.querySelectorAll('tr');
+
+
+      let gwa = 0;
+      let totalGrades = 0;
+      let totalUnits = 0;
+
+      for (let i = 0; i < rows.length; i++) {
+        // current row
+        let currentRow = rows[i];
+
+        // you ge the unit and grade on the current row
+        let unitInput = currentRow.querySelector('.unit');
+        let gradeInput = currentRow.querySelector('.grade');
+
+
+        // convert the value of the input into float and if its empty set it to zero
+        let unit = parseFloat(unitInput.value) || 0;
+        let grade = parseFloat(gradeInput.value) || 0;
+
+
+        // if the value of unit or grade is less than 1 then show the alert message
+        if (unit < 1 || grade < 1) {
+          document.getElementById('error').innerHTML = 'Please input a valid unit or grade!';
+          return;
+        }
+
+
+        totalGrades += unit * grade;
+        totalUnits += unit;
+        gwa = totalGrades / totalUnits;
+
+      }
+
+      document.getElementById('show-gwa').innerHTML = `GWA: ${gwa.toFixed(3)}`;
+    });
+
+  </script>
+
+</body>
+
+</html>
