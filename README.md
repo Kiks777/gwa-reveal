@@ -1,6 +1,23 @@
 # GWA Reveal
 
-![GWA Reveal Logo](https://github.com/Kiks777/gwa-reveal/blob/main/src/logo.svg)
+<p align="center">
+  <img src="https://github.com/Kiks777/gwa-reveal/blob/main/src/logo.svg" alt="GWA Reveal Logo" width="200">
+</p>
 
-A simple GPA/GWA calculator built with **HTML, JavaScript, and Tailwind CSS**, deployed on GitHub Pages.  
-This project is part of my **practice with JavaScript** to improve my web development skills.
+<p align="center">
+  A simple GWA calculator built with <strong>HTML</strong>, <strong>JavaScript</strong>, and <strong>Tailwind CSS</strong>,  
+  deployed on <strong>GitHub Pages</strong>.
+</p>
+
+<p align="center">
+  This project is part of my <strong>JavaScript practice</strong> to improve my web development skills.
+</p>
+
+---
+
+## Tech Stack
+
+- **HTML** – Structure and layout  
+- **JavaScript** – Core logic and calculations  
+- **Tailwind CSS** – Styling and responsive design  
+- **GitHub Pages** – Deployment and hosting
