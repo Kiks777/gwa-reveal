@@ -20,6 +20,14 @@
 
 ---
 
+## Project Link
+
+- **URL:** [https://kiks777.github.io/gwa-reveal/](https://kiks777.github.io/gwa-reveal/)  
+- **Sample Image:**  
+![Sample Image](https://github.com/Kiks777/gwa-reveal/blob/main/public/gwa-reveal.png)
+
+---
+
 ## Tech Stack
 
 - **HTML** – Application structure  
